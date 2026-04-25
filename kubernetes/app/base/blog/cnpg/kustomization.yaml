@@ -1,0 +1,6 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+kind: Kustomization
+resources:
+  - ./blog-auth.secret.sops.yaml
+  - ./blog.cluster.yaml

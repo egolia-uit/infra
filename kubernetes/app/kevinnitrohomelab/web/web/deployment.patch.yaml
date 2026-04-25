@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/egolia-uit/web:dev-2604.25.1145
+
+  selector: {}

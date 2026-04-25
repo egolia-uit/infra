@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: egolia
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: egolia-course
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: egolia-billing
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: egolia-blog
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: egolia-web

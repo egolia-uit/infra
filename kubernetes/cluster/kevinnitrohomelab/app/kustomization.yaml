@@ -1,0 +1,9 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+kind: Kustomization
+namespace: egolia
+resources:
+  - ./billing.yaml
+  - ./blog.yaml
+  - ./course.yaml
+  - ./web.yaml

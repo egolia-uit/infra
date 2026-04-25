@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: billing-http
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+      namespace: istio-system
+      sectionName: http-wildcard
+  hostnames:
+    - egolia-api.${PUBLIC_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /billing
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: billing-https
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+      namespace: istio-system
+      sectionName: https-wildcard
+  hostnames:
+    - egolia-api.${PUBLIC_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /billing/health
+      backendRefs:
+        - name: billing-billing
+          port: 81
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /billing
+      backendRefs:
+        - name: billing-billing
+          port: 80

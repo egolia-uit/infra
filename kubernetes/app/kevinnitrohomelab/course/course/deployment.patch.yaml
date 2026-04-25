@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-course
+  labels:
+    istio.io/dataplane-mode: ambient
+spec:
+  template:
+    spec:
+      containers:
+        - name: course
+          image: ghcr.io/egolia-uit/course:dev-2604.25.1145
+
+          env:
+            - name: EGOLIA_COURSE_SERVER_URL
+              value: https://api.${PUBLIC_DOMAIN}
+
+  selector: {}

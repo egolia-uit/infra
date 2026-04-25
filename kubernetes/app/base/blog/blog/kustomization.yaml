@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+kind: Kustomization
+resources:
+  - ./authentik.secret.yaml
+  - ./database.secret.sops.yaml
+  - ./deployment.yaml
+  - ./service.yaml

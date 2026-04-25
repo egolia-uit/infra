@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/service.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: billing-billing
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+    - name: grpc
+      port: 50051
+      targetPort: grpc
+    - name: health
+      port: 81
+      targetPort: health

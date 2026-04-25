@@ -1,0 +1,3 @@
+secret/**
+!secret/.gitkeep
+!secret/age.agekey.encrypted

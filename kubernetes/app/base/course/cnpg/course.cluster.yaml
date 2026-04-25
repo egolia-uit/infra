@@ -1,0 +1,27 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-course
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixe
+  storage:
+    size: 500Mi
+  monitoring:
+    enablePodMonitor: false
+  postgresql:
+    parameters:
+      timezone: ${TIMEZONE}
+      log_timezone: ${TIMEZONE}
+  bootstrap:
+    initdb:
+      database: course
+      secret:
+        name: cnpg-course-auth
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r

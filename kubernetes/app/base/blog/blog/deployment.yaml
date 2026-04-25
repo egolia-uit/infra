@@ -1,0 +1,72 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-blog
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  template:
+    spec:
+      containers:
+        - name: blog
+          image: ghcr.io/egolia-uit/blog:latest
+
+          ports:
+            - name: http
+              containerPort: 80
+            - name: grpc
+              containerPort: 50051
+            - name: health
+              containerPort: 81
+
+          env:
+            - name: EGOLIA_BLOG_SERVER_HTTP_PORT
+              value: '80'
+            - name: EGOLIA_BLOG_SERVER_GRPC_PORT
+              value: '50051'
+            - name: EGOLIA_BLOG_SERVER_HEALTH_PORT
+              value: '81'
+            - name: EGOLIA_BLOG_SERVER_URL
+              value: https://blog.egolia.com # replace
+            - name: EGOLIA_BLOG_LOG_LEVEL
+              value: debug
+
+          envFrom:
+            - secretRef:
+                name: blog-blog-authentik
+            - secretRef:
+                name: blog-blog-database
+
+          startupProbe:
+            httpGet:
+              path: /blog/health/startup
+              port: 81
+            periodSeconds: 5
+            failureThreshold: 10
+
+          readinessProbe:
+            httpGet:
+              path: /blog/health/ready
+              port: 81
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+
+          livenessProbe:
+            httpGet:
+              path: /blog/health/live
+              port: 81
+            periodSeconds: 10
+            failureThreshold: 3
+
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+
+  selector: {}

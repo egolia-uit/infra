@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+kind: Kustomization
+labels:
+  - pairs:
+      app.kubernetes.io/name: web-web
+    includeSelectors: true
+resources:
+  - ../../../base/web/web/
+  - ./httproute.yaml
+patches:
+  - path: ./deployment.patch.yaml

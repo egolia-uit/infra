@@ -1,0 +1,28 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-web
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  template:
+    spec:
+      containers:
+        - name: course
+          image: ghcr.io/egolia-uit/web:latest
+
+          ports:
+            - name: http
+              containerPort: 3000
+
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+
+  selector: {}

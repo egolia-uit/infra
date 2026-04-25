@@ -1,0 +1,7 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+kind: Kustomization
+resources:
+  - ./httproute.yaml
+  - ./receiver.yaml
+  - ./token.secret.sops.yaml

@@ -1,0 +1,17 @@
+[env]
+_.file = ".env.yaml"
+TIMEZONE = "Asia/Ho_Chi_Minh"
+SOPS_AGE_KEY_FILE = "./secret/age.agekey"
+
+[settings]
+sops = { age_key_file = "./secret/age.agekey" }
+
+[tools]
+kubeconform = "latest"
+kubectl = "latest"
+node = "24.15.0"
+"npm:renovate" = "43.141.5"
+sops = "latest"
+
+[shell_alias]
+kubeconform = "{% raw %}kubeconform -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' -schema-location default{% endraw %}"

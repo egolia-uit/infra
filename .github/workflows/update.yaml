@@ -1,0 +1,45 @@
+name: Update Image
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - renovate
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get token
+        id: get_token
+        uses: actions/create-github-app-token@v2
+        with:
+          private-key: ${{ secrets.EGOLIA_BOT_PRIVATE_KEY }}
+          app-id: ${{ vars.EGOLIA_BOT_APP_ID }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.repository }}
+
+      - name: Setup Mise
+        uses: jdx/mise-action@v4
+        with:
+          experimental: true
+          cache: true
+
+      - name: Run renovate
+        env:
+          RENOVATE_TOKEN: ${{ steps.get_token.outputs.token }}
+          RENOVATE_PLATFORM: github
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_AUTODISCOVER: 'false'
+          RENOVATE_REQUIRE_CONFIG: ignored
+          RENOVATE_CONFIG_FILE: renovate/update.json
+        run: renovate --log-level=info
