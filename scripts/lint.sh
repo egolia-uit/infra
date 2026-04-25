@@ -24,8 +24,7 @@ KUBECONFORM_ARGS=(
 total_errors=0
 
 for target in "${targets[@]}"; do
-  echo "----------------------------------------"
-  echo "Linting $target"
+  echo "::group::Linting $target"
   output=$(kubectl kustomize "$target" | envsubst | kubeconform "${KUBECONFORM_ARGS[@]}" 2>&1 || true)
   echo "$output"
 
@@ -42,13 +41,14 @@ for target in "${targets[@]}"; do
   else
     echo "✅ No errors in $target"
   fi
+  echo "::endgroup::"
 done
 
-echo "----------------------------------------"
+echo '---'
 if [ "$total_errors" -gt 0 ]; then
   echo "Final Status: Validation failed with $total_errors total error(s)."
   exit 1
 else
-  echo "Final Status: All targets passed!"
+  echo 'Final Status: All targets passed!'
   exit 0
 fi
