@@ -9,11 +9,11 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Create AGE key file
-        run: echo "${{ secrets.AGEKEY_CONTENT_BASE64 }}" | base64 -d > secret/age.agekey
-
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Create AGE key file
+        run: echo "${{ secrets.AGEKEY_CONTENT_BASE64 }}" | base64 -d > secret/age.agekey
 
       - name: Setup Mise
         uses: jdx/mise-action@v4
