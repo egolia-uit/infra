@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./authorizationpolicy.yaml
   - ./requestauthentication.yaml
+  - ./waypoint.gateway.yaml

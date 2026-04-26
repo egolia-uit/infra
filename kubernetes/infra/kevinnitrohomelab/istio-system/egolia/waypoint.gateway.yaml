@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: waypoint
+  name: egolia-waypoint
   labels:
     istio.io/waypoint-for: service
 spec:
@@ -20,4 +20,7 @@ spec:
               - key: kubernetes.io/metadata.name
                 operator: In
                 values:
-                  - egolia
+                  - egolia-billing
+                  - egolia-blog
+                  - egolia-course
+                  - egolia-web

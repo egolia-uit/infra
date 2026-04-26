@@ -5,5 +5,5 @@ kind: Service
 metadata:
   name: course-course
   labels:
-    istio.io/use-waypoint: waypoint
-    istio.io/use-waypoint-namespace: egolia
+    istio.io/use-waypoint: egolia-waypoint
+    istio.io/use-waypoint-namespace: istio-system

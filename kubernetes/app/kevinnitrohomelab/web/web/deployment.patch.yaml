@@ -9,6 +9,5 @@ spec:
     spec:
       containers:
         - name: web
-          image: ghcr.io/egolia-uit/web:dev-2604.25.1145
 
   selector: {}

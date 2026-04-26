@@ -3,5 +3,5 @@
 kind: Kustomization
 namespace: egolia
 resources:
-  - ./egolia.yaml
   - ./flux-system.yaml
+  - ./istio-system.yaml

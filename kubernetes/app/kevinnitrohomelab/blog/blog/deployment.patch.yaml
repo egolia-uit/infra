@@ -4,14 +4,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: blog-blog
-  labels:
-    istio.io/dataplane-mode: ambient
 spec:
   template:
     spec:
       containers:
         - name: blog
-          image: ghcr.io/egolia-uit/blog:dev-2604.25.1145
 
           env:
             - name: EGOLIA_BLOG_SERVER_URL

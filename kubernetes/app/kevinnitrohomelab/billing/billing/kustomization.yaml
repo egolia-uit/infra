@@ -1,15 +1,22 @@
 ---
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 kind: Kustomization
+
 labels:
   - pairs:
       app.kubernetes.io/name: billing-billing
     includeSelectors: true
+
 resources:
   - ../../../base/billing/billing/
   - ./grpcroute.yaml
   - ./httproute.yaml
+
 patches:
   - path: ./deployment.patch.yaml
   - path: ./authentik.secret.patch.sops.yaml
   - path: ./service.patch.yaml
+
+images:
+  - name: ghcr.io/egolia-uit/billing
+    newTag: dev-2604.25.1145
