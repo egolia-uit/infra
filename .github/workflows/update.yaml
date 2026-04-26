@@ -26,7 +26,7 @@ jobs:
           private-key: ${{ secrets.EGOLIA_BOT_PRIVATE_KEY }}
           app-id: ${{ vars.EGOLIA_BOT_APP_ID }}
           owner: ${{ github.repository_owner }}
-          repositories: ${{ github.repository }}
+          repositories: ${{ github.event.repository.name }}
 
       - name: Setup Mise
         uses: jdx/mise-action@v4

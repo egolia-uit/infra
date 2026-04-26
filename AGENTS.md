@@ -58,6 +58,7 @@ kubernetes
 ```
 
 - Each app base contains deployment, service, secret, configmap, no labels, namespace, and the cnpg cluster (postgres)
+- There is no label for selecting from service to deployment, because we use kustomize to patch it
 - App overlay:
   - Patch the app image for specific version, updated by renovate
   - Label istio waypoint
@@ -68,3 +69,4 @@ kubernetes
   - Flux system: webhook
   - istio system: waypoint, authorization policy, authentication request, which map JWT claims to request, verify JWT from authentik. It is scoped inside egolia section
 - Most organised as folder by namespace, so, each folder only for 1 namespace
+- Some of secrets end with `sops.yaml` will be encrypted by sops age, and flux will decrypt it before applying
