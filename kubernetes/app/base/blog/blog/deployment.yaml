@@ -9,6 +9,7 @@ metadata:
 spec:
   template:
     spec:
+      serviceAccountName: blog
       containers:
         - name: blog
           image: ghcr.io/egolia-uit/blog:latest

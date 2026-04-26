@@ -9,6 +9,7 @@ metadata:
 spec:
   template:
     spec:
+      serviceAccountName: course
       containers:
         - name: course
           image: ghcr.io/egolia-uit/course:latest

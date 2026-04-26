@@ -1,22 +1,18 @@
 ---
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 kind: Kustomization
-
 labels:
   - pairs:
       app.kubernetes.io/name: blog-blog
     includeSelectors: true
-
 resources:
   - ../../../base/blog/blog/
   - ./grpcroute.yaml
   - ./httproute.yaml
-
 patches:
   - path: ./deployment.patch.yaml
   - path: ./authentik.secret.patch.sops.yaml
   - path: ./service.patch.yaml
-
 images:
   - name: ghcr.io/egolia-uit/blog
     newTag: dev-2604.25.1145

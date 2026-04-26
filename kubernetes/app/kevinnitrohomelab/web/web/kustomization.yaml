@@ -1,19 +1,15 @@
 ---
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 kind: Kustomization
-
 labels:
   - pairs:
       app.kubernetes.io/name: web-web
     includeSelectors: true
-
 resources:
   - ../../../base/web/web/
   - ./httproute.yaml
-
 patches:
   - path: ./deployment.patch.yaml
-
 images:
   - name: ghcr.io/egolia-uit/web
     newTag: dev-2604.25.1145

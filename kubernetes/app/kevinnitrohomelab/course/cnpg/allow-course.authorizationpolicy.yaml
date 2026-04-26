@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/security.istio.io/authorizationpolicy_v1.json
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: cnpg-allow-course
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: cnpg-course
+  rules:
+    - from:
+        - source:
+            principals:
+              - cluster.local/ns/egolia-course/sa/course

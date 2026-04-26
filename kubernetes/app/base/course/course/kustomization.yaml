@@ -6,3 +6,4 @@ resources:
   - ./deployment.yaml
   - ./s3.secret.yaml
   - ./service.yaml
+  - ./serviceaccount.yaml
