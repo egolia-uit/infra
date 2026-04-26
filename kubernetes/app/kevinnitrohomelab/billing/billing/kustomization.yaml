@@ -15,4 +15,4 @@ patches:
   - path: ./service.patch.yaml
 images:
   - name: ghcr.io/egolia-uit/billing
-    newTag: dev-2604.26.1627
+    newTag: dev-2604.26.1733
