@@ -11,3 +11,5 @@ Include kubernetes manifest. This repo only contains mostly app, not kubernetes 
 ## Structure
 
 ### Kubernetes
+
+- The ingress gateway is not declared in this repo, only waypoint is. Both live inside istio-system

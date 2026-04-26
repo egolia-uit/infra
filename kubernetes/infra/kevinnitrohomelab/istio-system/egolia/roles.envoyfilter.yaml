@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/networking.istio.io/envoyfilter_v1alpha3.json
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: egolia-roles
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: GATEWAY
+        listener:
+          filterChain:
+            filter:
+              name: envoy.filters.network.http_connection_manager
+              subFilter:
+                name: envoy.filters.http.router
+      patch:
+        operation: INSERT_AFTER
+        value:
+          name: envoy.filters.http.lua
+          typed_config:
+            '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+            inlineCode: | # language: lua
+              function envoy_on_request(request_handle)
+                local meta = request_handle:streamInfo():dynamicMetadata()
+                local jwt_payload = meta:get("envoy.filters.http.jwt_authn")
+
+                if jwt_payload then
+                  if jwt_payload["roles"] and type(jwt_payload["roles"]) == "table" then
+                    local roles = jwt_payload["roles"]
+                    local json_parts = {}
+
+                    for i, role in ipairs(roles) do
+                      table.insert(json_parts, '"' .. role .. '"')
+                    end
+
+                    local json_array = "[" .. table.concat(json_parts, ",") .. "]"
+                    request_handle:headers():replace("X-Forwarded-Roles", json_array)
+                  end
+                end
+              end

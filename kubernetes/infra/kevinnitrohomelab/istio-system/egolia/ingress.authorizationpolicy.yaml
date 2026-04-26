@@ -1,0 +1,100 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/security.istio.io/authorizationpolicy_v1.json
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: egolia-ingress
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+  action: ALLOW
+  rules:
+    - # Public
+      to:
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - GET
+            paths:
+              - /course/courses
+              - /course/courses/{*}/landing
+              - /course/courses/{*}/lessons/{*}
+              - /course/health/*
+
+    - # Instructor
+      from:
+        - source:
+            requestPrincipals:
+              - '*'
+      to:
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            paths:
+              - /course/courses/{*}/basic-info
+              - /course/courses/{*}/update
+              - /course/courses/{*}/delete
+              - /course/courses/{*}/sections
+              - /course/courses/{*}/sections/{*}
+              - /course/courses/{*}/sections/{*}/move
+              - /course/courses/{*}/lessons
+              - /course/courses/{*}/lessons/{*}/video
+              - /course/courses/{*}/lessons/{*}/test
+              - /course/courses/{*}/lessons/{*}/upload-video-url
+      when:
+        - key: request.auth.claims[roles]
+          values: [instructor]
+
+    - # Admin
+      from:
+        - source:
+            requestPrincipals:
+              - '*'
+      to:
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            paths:
+              - /course/courses/{*}/approve
+              - /course/courses/{*}/decline
+              - /course/courses/{*}/hide
+              - /course/courses/{*}/unhide
+              - /billing/admin/*
+      when:
+        - key: request.auth.claims[roles]
+          values: [admin]
+
+    - # Authenticated
+      from:
+        - source:
+            requestPrincipals:
+              - '*'
+      to:
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            paths:
+              - /course/*
+              - /billing/*
+              - /blog/post
+              - /blog/post/*
+      # when:
+      #   - key: request.auth.claims[roles]
+      #     notValues: [instructor, admin]
+
+    - # Dev gRPC Access
+      from:
+        - source:
+            requestPrincipals: ['*']
+      to:
+        - operation:
+            hosts:
+              - egolia-grpc-api.${PUBLIC_HOST}
+      when:
+        - key: request.auth.claims[preferred_username]
+          values:
+            - kevinnitro
+            - bighousevn

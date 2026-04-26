@@ -1,19 +1,22 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/security.istio.io/requestauthentication_v1.json
 apiVersion: security.istio.io/v1
 kind: RequestAuthentication
 metadata:
-  name: egolia-jwt-auth
+  name: egolia-ingress-auth
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: default
   jwtRules:
-    - issuer: https://authentik.${PUBLIC_DOMAIN}
+    - issuer: https://authentik.${PUBLIC_DOMAIN}/application/o/egolia-app-web/
       jwksUri: https://authentik-server.authentik/application/o/egolia-app-web/jwks/
       outputClaimToHeaders: &outputClaimToHeaders
         - header: X-Forwarded-ID
           claim: sub
-    - issuer: https://authentik.${PUBLIC_DOMAIN}
+        - header: X-Forwarded-Username
+          claim: preferred_username
+    - issuer: https://authentik.${PUBLIC_DOMAIN}/application/o/egolia-api-web/
       jwksUri: https://authentik-server.authentik/application/o/egolia-api-web/jwks/
       outputClaimToHeaders: *outputClaimToHeaders
