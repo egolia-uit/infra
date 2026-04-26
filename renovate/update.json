@@ -2,6 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "egolia-renovate-update/",
   "extends": ["github>egolia-uit/renovate-config"],
+  "platformAutomerge": true,
+  "platformCommit": "enabled",
+  "automergeType": "branch",
   "enabledManagers": ["kustomize"],
   "kustomize": {
     "managerFilePatterns": ["(^|/)kustomization\\.ya?ml$"],
