@@ -1,3 +1,4 @@
-secret/**
-!secret/.gitkeep
-!secret/age.agekey.encrypted
+/secret/**
+!/secret/.gitkeep
+!/secret/age.agekey.encrypted
+/.tmp/**

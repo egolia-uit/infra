@@ -10,7 +10,7 @@ spec:
       sectionName: https-wildcard
       namespace: istio-system
   hostnames:
-    - egolia-flux-webhook.${IDVN_DOMAIN}
+    - egolia-flux-webhook.${PUBLIC_DOMAIN}
   rules:
     - matches:
         - path:

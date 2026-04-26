@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+CACHE_DIR="$SCRIPT_DIR/../.tmp/kubeconform_cache"
+
+mkdir -p "$CACHE_DIR"
+
 parent_targets=(
   "kubernetes/app/kevinnitrohomelab/"
   "kubernetes/infra/kevinnitrohomelab/"
@@ -19,6 +24,7 @@ KUBECONFORM_ARGS=(
   -schema-location default
   -strict
   -summary
+  -cache "$CACHE_DIR"
 )
 
 total_errors=0

@@ -12,6 +12,10 @@ age-decrypt-age own=age_key_file:
     age -i {{ own }} -d -o {{ age_key }} {{ encrypted_age_key }}
 
 [unix]
+lint:
+    ./scripts/lint.sh
+
+[unix]
 kube-init:
     kubectl kustomize kubernetes/cluster/kevinnitrohomelab | envsubst | sops -d /dev/stdin | kubectl apply -f -
 
