@@ -45,4 +45,4 @@ jobs:
           RENOVATE_AUTODISCOVER: 'false'
           RENOVATE_REQUIRE_CONFIG: ignored
           RENOVATE_CONFIG_FILE: renovate/update.json
-        run: renovate --log-level=info
+        run: renovate
