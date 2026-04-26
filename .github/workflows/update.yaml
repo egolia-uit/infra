@@ -19,6 +19,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Create AGE key file
+        run: echo "${{ secrets.AGEKEY_CONTENT_BASE64 }}" | base64 -d > secret/age.agekey
+
+      - name: Setup Mise
+        uses: jdx/mise-action@v4
+        with:
+          experimental: true
+          cache: true
+
       - name: Get token
         id: get_token
         uses: actions/create-github-app-token@v2
@@ -27,12 +36,6 @@ jobs:
           app-id: ${{ vars.EGOLIA_BOT_APP_ID }}
           owner: ${{ github.repository_owner }}
           repositories: ${{ github.event.repository.name }}
-
-      - name: Setup Mise
-        uses: jdx/mise-action@v4
-        with:
-          experimental: true
-          cache: true
 
       - name: Run renovate
         env:
