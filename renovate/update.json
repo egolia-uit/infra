@@ -5,6 +5,7 @@
   "platformAutomerge": true,
   "platformCommit": "enabled",
   "automergeType": "branch",
+  "ignoreTests": true,
   "enabledManagers": ["kustomize"],
   "kustomize": {
     "managerFilePatterns": ["(^|/)kustomization\\.ya?ml$"],
