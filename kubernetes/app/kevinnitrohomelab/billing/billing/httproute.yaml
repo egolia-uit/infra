@@ -51,6 +51,22 @@ spec:
         - path:
             type: PathPrefix
             value: /billing
+      filters:
+        - type: CORS
+          cors:
+            allowCredentials: true
+            allowOrigins:
+              - http://localhost:3000
+              - http://web.egolia.localhost
+              - http://localhost:9080
+              - http://api.egolia.localhost
+              - http://egolia-web.${PUBLIC_DOMAIN}
+            allowMethods:
+              - '*'
+            allowHeaders:
+              - '*'
+            exposeHeaders:
+              - '*'
       backendRefs:
         - name: billing-billing
           port: 80
