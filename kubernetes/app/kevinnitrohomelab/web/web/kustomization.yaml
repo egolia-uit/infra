@@ -12,4 +12,4 @@ patches:
   - path: ./deployment.patch.yaml
 images:
   - name: ghcr.io/egolia-uit/web
-    newTag: dev-2605.09.1617
+    newTag: dev-2605.09.1629
