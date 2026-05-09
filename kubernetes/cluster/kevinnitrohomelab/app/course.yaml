@@ -14,7 +14,7 @@ spec:
     name: egolia
   path: kubernetes/app/kevinnitrohomelab/course/
   dependsOn:
-    - name: infra-egolia
+    - name: infra-istio-system
   decryption:
     provider: sops
     secretRef:
