@@ -25,4 +25,4 @@ patches:
             name: blog-otel-env
 images:
   - name: ghcr.io/egolia-uit/blog
-    newTag: dev-2605.07.2341
+    newTag: dev-2605.09.1754
