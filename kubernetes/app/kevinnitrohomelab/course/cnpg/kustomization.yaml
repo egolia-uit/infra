@@ -6,4 +6,4 @@ labels:
       app.kubernetes.io/name: course-cnpg
 resources:
   - ../../../base/course/cnpg/
-  - ./allow-course.authorizationpolicy.yaml
+  # - ./allow-course.authorizationpolicy.yaml
