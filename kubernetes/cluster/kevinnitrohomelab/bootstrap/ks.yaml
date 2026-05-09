@@ -14,3 +14,7 @@ spec:
     kind: GitRepository
     name: egolia
   path: kubernetes/cluster/kevinnitrohomelab/
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: clustersetting
