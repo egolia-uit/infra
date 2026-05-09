@@ -14,11 +14,7 @@ spec:
   hostnames:
     - egolia-web.${PUBLIC_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /note
-      filters:
+    - filters:
         - type: RequestRedirect
           requestRedirect:
             scheme: https

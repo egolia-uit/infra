@@ -17,7 +17,7 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /note
+            value: /course
       filters:
         - type: RequestRedirect
           requestRedirect:
@@ -43,14 +43,14 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /note/health
+            value: /course/health
       backendRefs:
         - name: course-course
           port: 81
     - matches:
         - path:
             type: PathPrefix
-            value: /note
+            value: /course
       filters:
         - type: CORS
           cors:
