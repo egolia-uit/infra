@@ -81,9 +81,6 @@ spec:
               - /billing/*
               - /blog/post
               - /blog/post/*
-      # when:
-      #   - key: request.auth.claims[roles]
-      #     notValues: [instructor, admin]
 
     - # Dev gRPC Access
       from:
@@ -98,3 +95,9 @@ spec:
           values:
             - kevinnitro
             - bighousevn
+
+    - # Allow all other hosts
+      to:
+        - operation:
+            hosts:
+              - '*'

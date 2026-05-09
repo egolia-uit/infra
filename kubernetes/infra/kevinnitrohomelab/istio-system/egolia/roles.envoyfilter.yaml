@@ -27,6 +27,12 @@ spec:
             '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
             inlineCode: | # language: lua
               function envoy_on_request(request_handle)
+                -- Only process egolia-api.* hosts
+                local host = request_handle:headers():get(":authority")
+                if not host or not (string.match(host, "^egolia%-api%.") or string.match(host, "^egolia%-grpc%-api%.")) then
+                  return
+                end
+
                 local meta = request_handle:streamInfo():dynamicMetadata()
                 local jwt_payload = meta:get("envoy.filters.http.jwt_authn")
 
