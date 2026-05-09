@@ -13,4 +13,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: egolia
-  path: kubernetes/app/kevinnitrohomelab/billing/
+  path: kubernetes/cluster/kevinnitrohomelab/
