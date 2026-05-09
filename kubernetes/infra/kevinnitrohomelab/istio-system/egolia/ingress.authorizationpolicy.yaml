@@ -11,12 +11,6 @@ spec:
       name: default
   action: ALLOW
   rules:
-    - # Allow authentik without JWT (for other apps to authenticate)
-      to:
-        - operation:
-            hosts:
-              - authentik.${PUBLIC_DOMAIN}
-
     - # Public
       to:
         - operation:
