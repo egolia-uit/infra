@@ -13,3 +13,4 @@ spec:
         - source:
             principals:
               - cluster.local/ns/egolia-billing/sa/billing
+              - cluster.local/ns/cnpg-system/sa/cnpg-cloudnative-pg
