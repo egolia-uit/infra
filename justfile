@@ -30,5 +30,6 @@ kube-create-ns namespace="egolia":
 
 [arg("secret-name", long="secret-name", short="s", help="Name of the Kubernetes secret")]
 [arg("namespace", long="namespace", short="n", help="Namespace to create the secret in")]
-kube-add-age-secret secret-name="egolia-sops-age" namespace="egolia": kube-create-ns
+[private]
+kube-add-age-secret secret-name="sops" namespace="egolia": kube-create-ns
     kubectl create secret generic  {{ secret-name }} --from-file=age.agekey={{ age_key }} -n {{ namespace }} --dry-run=client -o yaml | kubectl apply -f -

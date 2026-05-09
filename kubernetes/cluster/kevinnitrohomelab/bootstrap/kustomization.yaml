@@ -5,4 +5,3 @@ resources:
   - ./gitrepo.yaml
   - ./ks.yaml
   - ./namespace.yaml
-  - ./sops.secret.yaml
