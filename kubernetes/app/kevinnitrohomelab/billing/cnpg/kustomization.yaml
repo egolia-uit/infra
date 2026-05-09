@@ -6,4 +6,4 @@ labels:
       app.kubernetes.io/name: billing-cnpg
 resources:
   - ../../../base/billing/cnpg/
-  # - ./allow-billing.authorizationpolicy.yaml
+  - ./allow-billing.authorizationpolicy.yaml

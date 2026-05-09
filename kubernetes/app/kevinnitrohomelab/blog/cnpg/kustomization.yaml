@@ -6,4 +6,4 @@ labels:
       app.kubernetes.io/name: blog-cnpg
 resources:
   - ../../../base/blog/cnpg/
-  # - ./allow-blog.authorizationpolicy.yaml
+  - ./allow-blog.authorizationpolicy.yaml
