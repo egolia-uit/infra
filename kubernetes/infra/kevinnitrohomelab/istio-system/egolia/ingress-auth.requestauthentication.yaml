@@ -11,12 +11,12 @@ spec:
       name: default
   jwtRules:
     - issuer: https://authentik.${PUBLIC_DOMAIN}/application/o/egolia-app-web/
-      jwksUri: https://authentik-server.authentik/application/o/egolia-app-web/jwks/
+      jwksUri: http://authentik-server.authentik/application/o/egolia-app-web/jwks/
       outputClaimToHeaders: &outputClaimToHeaders
         - header: X-Forwarded-ID
           claim: sub
         - header: X-Forwarded-Username
           claim: preferred_username
     - issuer: https://authentik.${PUBLIC_DOMAIN}/application/o/egolia-api-web/
-      jwksUri: https://authentik-server.authentik/application/o/egolia-api-web/jwks/
+      jwksUri: http://authentik-server.authentik/application/o/egolia-api-web/jwks/
       outputClaimToHeaders: *outputClaimToHeaders
