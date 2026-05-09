@@ -14,6 +14,15 @@ patches:
   - path: ./deployment.patch.yaml
   - path: ./authentik.secret.patch.sops.yaml
   - path: ./service.patch.yaml
+  - target:
+      kind: Deployment
+      name: blog-blog
+    patch: |- # language: yaml
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          configMapRef:
+            name: blog-otel-env
 images:
   - name: ghcr.io/egolia-uit/blog
     newTag: dev-2605.07.2341

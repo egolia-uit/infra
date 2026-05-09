@@ -14,8 +14,4 @@ spec:
             - name: EGOLIA_COURSE_SERVER_URL
               value: https://api.${PUBLIC_DOMAIN}
 
-          envFrom:
-            - configMapRef:
-                name: course-otel-env
-
   selector: {}
