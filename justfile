@@ -16,8 +16,11 @@ lint:
     ./scripts/lint.sh
 
 [unix]
-kube-init:
-    kubectl kustomize kubernetes/cluster/kevinnitrohomelab | envsubst | sops -d /dev/stdin | kubectl apply -f -
+kube-init: kube-create-ns
+    kubectl kustomize kubernetes/cluster/kevinnitrohomelab | envsubst | kubectl apply -f -
+
+kube-delete:
+    kubectl kustomize kubernetes/cluster/kevinnitrohomelab | envsubst | kubectl delete -f -
 
 [arg("namespace", long="namespace", short="n", help="Namespace to create")]
 [private]

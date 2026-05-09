@@ -5,3 +5,4 @@ resources:
   - ./app/
   - ./clustersetting/
   - ./infra/
+  - ./namespace.yaml

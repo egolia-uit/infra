@@ -5,4 +5,3 @@ namespace: egolia
 resources:
   - ./clustersetting.configmap.yaml
   - ./clustersetting.secret.yaml
-  - ./sops.secret.yaml
