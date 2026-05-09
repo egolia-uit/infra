@@ -9,6 +9,7 @@ resources:
   - ../../../base/billing/billing/
   - ./grpcroute.yaml
   - ./httproute.yaml
+  - ./otel.configmap.yaml
 patches:
   - path: ./deployment.patch.yaml
   - path: ./authentik.secret.patch.sops.yaml

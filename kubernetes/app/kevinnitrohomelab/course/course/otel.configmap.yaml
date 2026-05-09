@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/configmap.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: course-otel-env
+data:
+  OTEL_SDK_DISABLED: 'false'
+  OTEL_SERVICE_NAME: course
+  OTEL_TRACES_EXPORTER: otlp
+  OTEL_METRICS_EXPORTER: otlp
+  OTEL_LOGS_EXPORTER: otlp
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://alloy-alloy.monitoring:4317
+  OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+  OTEL_TRACES_SAMPLER: 'always_on'

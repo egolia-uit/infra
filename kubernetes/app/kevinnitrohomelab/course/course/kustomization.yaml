@@ -9,6 +9,7 @@ resources:
   - ../../../base/course/course/
   - ./grpcroute.yaml
   - ./httproute.yaml
+  - ./otel.configmap.yaml
 patches:
   - path: ./deployment.patch.yaml
   - path: ./s3.secret.patch.sops.yaml

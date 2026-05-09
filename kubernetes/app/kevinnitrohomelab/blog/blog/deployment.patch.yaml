@@ -14,4 +14,8 @@ spec:
             - name: EGOLIA_BLOG_SERVER_URL
               value: https://api.${PUBLIC_DOMAIN}
 
+          envFrom:
+            - configMapRef:
+                name: blog-otel-env
+
   selector: {}
