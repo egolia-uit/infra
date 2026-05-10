@@ -19,36 +19,16 @@ spec:
             methods:
               - GET
             paths:
-              - /course/courses
+              - /course/courses-published
               - /course/courses/{*}/landing
-              - /course/courses/{*}/lessons/{*}
-              - /course/health/*
-
-    - # Instructor
-      from:
-        - source:
-            requestPrincipals:
-              - '*'
-      to:
+              - /course/courses/{*}/reviews
         - operation:
             hosts:
               - egolia-api.${PUBLIC_DOMAIN}
             paths:
-              - /course/courses/{*}/basic-info
-              - /course/courses/{*}/update
-              - /course/courses/{*}/delete
-              - /course/courses/{*}/sections
-              - /course/courses/{*}/sections/{*}
-              - /course/courses/{*}/sections/{*}/move
-              - /course/courses/{*}/lessons
-              - /course/courses/{*}/lessons/{*}/video
-              - /course/courses/{*}/lessons/{*}/test
-              - /course/courses/{*}/lessons/{*}/upload-video-url
-      when:
-        - key: request.auth.claims[roles]
-          values: [instructor]
+              - /course/health/*
 
-    - # Admin
+    - # Admin only
       from:
         - source:
             requestPrincipals:
@@ -57,15 +37,82 @@ spec:
         - operation:
             hosts:
               - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - POST
             paths:
               - /course/courses/{*}/approve
               - /course/courses/{*}/decline
-              - /course/courses/{*}/hide
-              - /course/courses/{*}/unhide
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            paths:
               - /billing/admin/*
       when:
         - key: request.auth.claims[roles]
-          values: [admin]
+          values:
+            - admin
+
+    - # Instructor or Admin
+      from:
+        - source:
+            requestPrincipals:
+              - '*'
+      to:
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - GET
+            paths:
+              - /course/my-courses
+              - /course/courses-system
+              - /course/courses/{*}/analytics
+              - /course/courses/{*}/students
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - POST
+            paths:
+              - /course/courses
+              - /course/courses/{*}/hide
+              - /course/courses/{*}/upload-video-url
+              - /course/courses/{*}/sections
+              - /course/courses/{*}/sections/{*}/move
+              - /course/courses/{*}/sections/{*}/lessons
+              - /course/courses/{*}/sections/{*}/lessons/{*}/move
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - PUT
+            paths:
+              - /course/courses/{*}/basic-info
+              - /course/courses/{*}/sections/{*}/lessons/{*}/test
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - PATCH
+            paths:
+              - /course/courses/{*}/sections/{*}
+              - /course/courses/{*}/sections/{*}/lessons/{*}/video
+        - operation:
+            hosts:
+              - egolia-api.${PUBLIC_DOMAIN}
+            methods:
+              - DELETE
+            paths:
+              - /course/courses/{*}
+              - /course/courses/{*}/hide
+              - /course/courses/{*}/sections/{*}
+              - /course/courses/{*}/sections/{*}/lessons/{*}
+              - /course/lesson-comments/{*}
+      when:
+        - key: request.auth.claims[roles]
+          values:
+            - instructor
+            - admin
 
     - # Authenticated
       from:
