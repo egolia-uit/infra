@@ -18,8 +18,10 @@ spec:
       patch:
         operation: MERGE
         value:
-          name: envoy.ext_authz_disabled
           typed_per_filter_config:
+            envoy.filters.http.jwt_authn:
+              '@type': type.googleapis.com/envoy.extensions.filters.http.jwt_authn.v3.PerRouteConfig
+              disabled: true
             envoy.ext_authz:
               '@type': type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
               disabled: true
