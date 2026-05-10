@@ -12,9 +12,6 @@ spec:
   jwtRules:
     - issuer: https://authentik.${PUBLIC_DOMAIN}/application/o/egolia-app-web/
       jwksUri: http://authentik-server.authentik/application/o/egolia-app-web/jwks/
-      audiences:
-        - egolia-app-web
-        - egolia-api-web
       outputClaimToHeaders: &outputClaimToHeaders
         - header: X-Forwarded-ID
           claim: sub
@@ -22,7 +19,4 @@ spec:
           claim: preferred_username
     - issuer: https://authentik.${PUBLIC_DOMAIN}/application/o/egolia-api-web/
       jwksUri: http://authentik-server.authentik/application/o/egolia-api-web/jwks/
-      audiences:
-        - egolia-app-web
-        - egolia-api-web
       outputClaimToHeaders: *outputClaimToHeaders
