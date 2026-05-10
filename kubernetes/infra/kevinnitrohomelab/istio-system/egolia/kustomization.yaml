@@ -2,6 +2,7 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 kind: Kustomization
 resources:
+  - ./bypass.envoyfilter.yaml
   - ./ingress-auth.requestauthentication.yaml
   - ./ingress.authorizationpolicy.yaml
   - ./roles.envoyfilter.yaml

@@ -1,0 +1,35 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/networking.istio.io/envoyfilter_v1alpha3.json
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: egolia-bypass
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: GATEWAY
+        listener:
+          filterChain:
+            filter:
+              name: envoy.filters.network.http_connection_manager
+              subFilter:
+                name: istio.jwt_authn
+      patch:
+        operation: INSERT_BEFORE
+        value:
+          name: envoy.filters.http.lua
+          typed_config:
+            '@type': googleapis.com
+            inline_code: | # language: lua
+              function envoy_on_request(request_handle)
+                local host = request_handle:headers():get(":authority")
+                local target_host = "egolia-api.${PUBLIC_DOMAIN}"
+                if host ~= target_host then
+                  request_handle:headers():remove("authorization")
+                end
+              end
