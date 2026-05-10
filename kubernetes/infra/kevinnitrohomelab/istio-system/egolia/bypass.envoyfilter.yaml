@@ -25,7 +25,7 @@ spec:
           name: envoy.filters.http.lua
           typed_config:
             '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
-            inline_code: | # language: lua
+            inlineCode: | # language: lua
               function envoy_on_request(request_handle)
                 local host = request_handle:headers():get(":authority")
                 local target_host = "egolia-api.${PUBLIC_DOMAIN}"
