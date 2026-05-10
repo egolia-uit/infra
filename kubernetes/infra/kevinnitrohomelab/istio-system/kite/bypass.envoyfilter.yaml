@@ -14,7 +14,7 @@ spec:
       match:
         routeConfiguration:
           vhost:
-            name: kite.${PUBLIC_DOMAIN}:*
+            name: kite.${PUBLIC_DOMAIN}:443
       patch:
         operation: MERGE
         value:
@@ -25,14 +25,13 @@ spec:
             envoy.ext_authz:
               '@type': type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
               disabled: true
-    # Kite's server-side OAuth token exchange and userinfo calls hit this vhost.
-    # The access token Authentik issues is opaque (not a JWT from our configured
-    # issuers), so jwt_authn rejects it with 401 before it reaches Authentik.
+    # Kite's server-side userinfo call hits authentik.* with an opaque Bearer token.
+    # jwt_authn rejects non-JWT tokens with 401; bypass it here so Authentik handles auth.
     - applyTo: HTTP_ROUTE
       match:
         routeConfiguration:
           vhost:
-            name: authentik.${PUBLIC_DOMAIN}:*
+            name: authentik.${PUBLIC_DOMAIN}:443
       patch:
         operation: MERGE
         value:
