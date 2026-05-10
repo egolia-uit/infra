@@ -24,7 +24,7 @@ spec:
         value:
           name: envoy.filters.http.lua
           typed_config:
-            '@type': googleapis.com
+            '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
             inline_code: | # language: lua
               function envoy_on_request(request_handle)
                 local host = request_handle:headers():get(":authority")
