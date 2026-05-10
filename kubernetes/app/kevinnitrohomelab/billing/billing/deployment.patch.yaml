@@ -6,6 +6,9 @@ metadata:
   name: billing-billing
 spec:
   template:
+    metadata:
+      labels:
+        istio.io/dataplane-mode: ambient
     spec:
       containers:
         - name: billing

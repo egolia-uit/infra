@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/networking.istio.io/envoyfilter_v1alpha3.json
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: kite-bypass
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+  configPatches:
+    - applyTo: HTTP_ROUTE
+      match:
+        routeConfiguration:
+          vhost:
+            name: kite.${PUBLIC_DOMAIN}:*
+      patch:
+        operation: MERGE
+        value:
+          name: envoy.ext_authz_disabled
+          typed_per_filter_config:
+            envoy.ext_authz:
+              '@type': type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+              disabled: true

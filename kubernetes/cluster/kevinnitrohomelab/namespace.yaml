@@ -4,8 +4,6 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: egolia-course
-  labels:
-    istio.io/dataplane-mode: ambient
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
@@ -13,8 +11,6 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: egolia-billing
-  labels:
-    istio.io/dataplane-mode: ambient
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
@@ -22,8 +18,6 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: egolia-blog
-  labels:
-    istio.io/dataplane-mode: ambient
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
@@ -31,5 +25,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: egolia-web
-  labels:
-    istio.io/dataplane-mode: ambient

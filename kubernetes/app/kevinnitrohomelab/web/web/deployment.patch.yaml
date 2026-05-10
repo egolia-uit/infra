@@ -6,6 +6,9 @@ metadata:
   name: web-web
 spec:
   template:
+    metadata:
+      labels:
+        istio.io/dataplane-mode: ambient
     spec:
       containers:
         - name: web
