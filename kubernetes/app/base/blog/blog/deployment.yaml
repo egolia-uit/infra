@@ -29,16 +29,12 @@ spec:
               value: '50051'
             - name: EGOLIA_BLOG_SERVER_HEALTH_PORT
               value: '81'
-            - name: EGOLIA_BLOG_SERVER_URL
-              value: https://blog.egolia.com # replace
             - name: EGOLIA_BLOG_LOG_LEVEL
               value: debug
 
           envFrom:
             - secretRef:
-                name: blog-blog-authentik
-            - secretRef:
-                name: blog-blog-database
+                name: blog-blog-env
 
           startupProbe:
             httpGet:

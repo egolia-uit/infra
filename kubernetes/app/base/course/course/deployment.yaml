@@ -29,16 +29,12 @@ spec:
               value: '50051'
             - name: EGOLIA_COURSE_SERVER_HEALTH_PORT
               value: '81'
-            - name: EGOLIA_COURSE_SERVER_URL
-              value: https://course.egolia.com # replace
             - name: EGOLIA_COURSE_LOG_LEVEL
               value: debug
 
           envFrom:
             - secretRef:
-                name: course-course-s3
-            - secretRef:
-                name: course-course-database
+                name: course-course-env
 
           startupProbe:
             httpGet:

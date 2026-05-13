@@ -1,0 +1,4 @@
+encrypted/*.{yaml,json,ini,env} diff=sopsdiffer
+
+*.sops.yaml diff=sopsdiffer
+env.yaml diff=sopsdiffer

@@ -12,7 +12,7 @@ resources:
   - ./otel.configmap.yaml
 patches:
   - path: ./deployment.patch.yaml
-  - path: ./s3.secret.patch.sops.yaml
+  - path: ./env.secret.patch.sops.yaml
   - path: ./service.patch.yaml
   - target:
       kind: Deployment

@@ -10,6 +10,7 @@ resources:
   - ./httproute.yaml
 patches:
   - path: ./deployment.patch.yaml
+  - path: ./env.secret.patch.sops.yaml
 images:
   - name: ghcr.io/egolia-uit/web
     newTag: dev-2605.09.1629

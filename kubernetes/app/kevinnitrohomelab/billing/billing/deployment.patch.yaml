@@ -9,11 +9,5 @@ spec:
     metadata:
       labels:
         istio.io/dataplane-mode: ambient
-    spec:
-      containers:
-        - name: billing
-          env:
-            - name: EGOLIA_BILLING_SERVER_URL
-              value: https://api.${PUBLIC_DOMAIN}
 
   selector: {}

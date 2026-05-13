@@ -2,3 +2,5 @@
 !/secret/.gitkeep
 !/secret/age.agekey.encrypted
 /.tmp/**
+
+.decrypted*

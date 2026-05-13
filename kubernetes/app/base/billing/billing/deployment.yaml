@@ -29,16 +29,12 @@ spec:
               value: '50051'
             - name: EGOLIA_BILLING_SERVER_HEALTH_PORT
               value: '82'
-            - name: EGOLIA_BILLING_SERVER_URL
-              value: https://billing.egolia.com # replace
             - name: EGOLIA_BILLING_LOG_LEVEL
               value: debug
 
           envFrom:
             - secretRef:
-                name: billing-billing-authentik
-            - secretRef:
-                name: billing-billing-database
+                name: billing-billing-env
 
           startupProbe:
             httpGet:

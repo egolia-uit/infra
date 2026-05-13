@@ -13,6 +13,10 @@ spec:
         - name: web
           image: ghcr.io/egolia-uit/web:latest
 
+          envFrom:
+            - secretRef:
+                name: web-web-env
+
           ports:
             - name: http
               containerPort: 3000

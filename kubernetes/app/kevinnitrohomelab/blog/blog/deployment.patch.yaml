@@ -9,12 +9,5 @@ spec:
     metadata:
       labels:
         istio.io/dataplane-mode: ambient
-    spec:
-      containers:
-        - name: blog
-
-          env:
-            - name: EGOLIA_BLOG_SERVER_URL
-              value: https://api.${PUBLIC_DOMAIN}
 
   selector: {}

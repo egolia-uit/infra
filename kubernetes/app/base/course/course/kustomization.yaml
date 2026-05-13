@@ -2,8 +2,7 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 kind: Kustomization
 resources:
-  - ./database.secret.sops.yaml
   - ./deployment.yaml
-  - ./s3.secret.yaml
+  - ./env.secret.sops.yaml
   - ./service.yaml
   - ./serviceaccount.yaml

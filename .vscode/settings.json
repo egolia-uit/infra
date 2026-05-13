@@ -1,0 +1,4 @@
+{
+  "sops.configPath": "./.sops.yaml",
+  "sops.defaults.ageKeyFile": "./secret/age.agekey"
+}
