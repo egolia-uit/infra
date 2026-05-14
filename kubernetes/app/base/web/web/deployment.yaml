@@ -13,6 +13,10 @@ spec:
         - name: web
           image: ghcr.io/egolia-uit/web:latest
 
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: web
+
           envFrom:
             - secretRef:
                 name: web-web-env

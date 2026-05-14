@@ -32,6 +32,9 @@ spec:
             - name: EGOLIA_BLOG_LOG_LEVEL
               value: debug
 
+            - name: OTEL_SERVICE_NAME
+              value: blog
+
           envFrom:
             - secretRef:
                 name: blog-blog-env

@@ -12,5 +12,10 @@ spec:
     spec:
       containers:
         - name: web
+          env:
+            - name: OTEL_TRACES_SAMPLER
+              value: always_on
+            - name: NEXT_OTEL_VERBOSE
+              value: '1'
 
   selector: {}
