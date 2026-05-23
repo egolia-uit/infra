@@ -25,4 +25,4 @@ patches:
             name: course-otel-env
 images:
   - name: ghcr.io/egolia-uit/course
-    newTag: dev-2605.09.1754
+    newTag: dev-2605.23.1445
