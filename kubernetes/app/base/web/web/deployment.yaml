@@ -17,10 +17,6 @@ spec:
             - name: OTEL_SERVICE_NAME
               value: web
 
-          envFrom:
-            - secretRef:
-                name: web-web-env
-
           ports:
             - name: http
               containerPort: 3000

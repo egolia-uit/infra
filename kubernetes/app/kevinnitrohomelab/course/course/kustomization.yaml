@@ -7,17 +7,22 @@ labels:
     includeSelectors: true
 resources:
   - ../../../base/course/course/
+  - ./env.secret.sops.yaml
   - ./grpcroute.yaml
   - ./httproute.yaml
   - ./otel.configmap.yaml
 patches:
   - path: ./deployment.patch.yaml
-  - path: ./env.secret.patch.sops.yaml
   - path: ./service.patch.yaml
   - target:
       kind: Deployment
       name: course-course
     patch: |- # language: yaml
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          secretRef:
+            name: course-course-env
       - op: add
         path: /spec/template/spec/containers/0/envFrom/-
         value:

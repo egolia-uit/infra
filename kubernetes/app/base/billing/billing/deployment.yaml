@@ -37,7 +37,7 @@ spec:
 
           envFrom:
             - secretRef:
-                name: billing-billing-env
+                name: billing-billing-database-env
 
           startupProbe:
             httpGet:

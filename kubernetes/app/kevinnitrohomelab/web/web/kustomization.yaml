@@ -19,6 +19,11 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/envFrom/-
         value:
+          secretRef:
+            name: web-web-env
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
           configMapRef:
             name: web-otel-env
 images:

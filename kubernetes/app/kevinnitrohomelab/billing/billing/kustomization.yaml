@@ -7,17 +7,22 @@ labels:
     includeSelectors: true
 resources:
   - ../../../base/billing/billing/
+  - ./env.secret.sops.yaml
   - ./grpcroute.yaml
   - ./httproute.yaml
   - ./otel.configmap.yaml
 patches:
   - path: ./deployment.patch.yaml
-  - path: ./env.secret.patch.sops.yaml
   - path: ./service.patch.yaml
   - target:
       kind: Deployment
       name: billing-billing
     patch: |- # language: yaml
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          secretRef:
+            name: billing-billing-env
       - op: add
         path: /spec/template/spec/containers/0/envFrom/-
         value:
