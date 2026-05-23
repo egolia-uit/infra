@@ -19,12 +19,15 @@ patches:
       name: billing-billing
     patch: |- # language: yaml
       - op: add
-        path: /spec/template/spec/containers/0/envFrom
+        path: /spec/template/spec/containers/0/envFrom/-
         value:
-          - secretRef:
-              name: billing-billing-env
-          - configMapRef:
-              name: billing-otel-env
+          secretRef:
+            name: billing-billing-env
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          configMapRef:
+            name: billing-otel-env
 images:
   - name: ghcr.io/egolia-uit/billing
     newTag: dev-2605.23.1445
