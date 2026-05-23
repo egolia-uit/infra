@@ -7,7 +7,7 @@ labels:
     includeSelectors: true
 resources:
   - ../../../base/web/web/
-  - ./env.secret.patch.sops.yaml
+  - ./env.secret.sops.yaml
   - ./httproute.yaml
   - ./otel.configmap.yaml
 patches:
