@@ -7,11 +7,11 @@ labels:
     includeSelectors: true
 resources:
   - ../../../base/web/web/
+  - ./env.secret.patch.sops.yaml
   - ./httproute.yaml
   - ./otel.configmap.yaml
 patches:
   - path: ./deployment.patch.yaml
-  - path: ./env.secret.patch.sops.yaml
   - target:
       kind: Deployment
       name: web-web
