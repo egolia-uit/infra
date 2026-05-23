@@ -17,15 +17,12 @@ patches:
       name: web-web
     patch: |- # language: yaml
       - op: add
-        path: /spec/template/spec/containers/0/envFrom/-
+        path: /spec/template/spec/containers/0/envFrom
         value:
-          secretRef:
-            name: web-web-env
-      - op: add
-        path: /spec/template/spec/containers/0/envFrom/-
-        value:
-          configMapRef:
-            name: web-otel-env
+          - secretRef:
+              name: web-web-env
+          - configMapRef:
+              name: web-otel-env
 images:
   - name: ghcr.io/egolia-uit/web
     newTag: dev-2605.23.1747

@@ -19,15 +19,12 @@ patches:
       name: blog-blog
     patch: |- # language: yaml
       - op: add
-        path: /spec/template/spec/containers/0/envFrom/-
+        path: /spec/template/spec/containers/0/envFrom
         value:
-          secretRef:
-            name: blog-blog-env
-      - op: add
-        path: /spec/template/spec/containers/0/envFrom/-
-        value:
-          configMapRef:
-            name: blog-otel-env
+          - secretRef:
+              name: blog-blog-env
+          - configMapRef:
+              name: blog-otel-env
 images:
   - name: ghcr.io/egolia-uit/blog
     newTag: dev-2605.09.1754
