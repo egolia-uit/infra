@@ -33,7 +33,7 @@ jobs:
         uses: actions/create-github-app-token@v3
         with:
           private-key: ${{ secrets.EGOLIA_BOT_PRIVATE_KEY }}
-          app-id: ${{ vars.EGOLIA_BOT_APP_ID }}
+          client-id: ${{ vars.EGOLIA_BOT_CLIENT_ID }}
           owner: ${{ github.repository_owner }}
           repositories: ${{ github.event.repository.name }}
 
