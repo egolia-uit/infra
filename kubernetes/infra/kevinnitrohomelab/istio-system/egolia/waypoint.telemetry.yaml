@@ -11,5 +11,8 @@ spec:
     name: egolia-waypoint
   accessLogging:
     - providers:
-        - name: otel-trace
         - name: otel-log
+  tracing:
+    - providers:
+        - name: otel-trace
+      randomSamplingPercentage: 100

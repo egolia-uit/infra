@@ -11,7 +11,10 @@ spec:
     name: default
   accessLogging:
     - providers:
-        - name: otel-trace
         - name: otel-log
       filter:
         expression: request.host.contains('egolia') || response.code >= 400
+  tracing:
+    - providers:
+        - name: otel-trace
+      randomSamplingPercentage: 100
