@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/telemetry.istio.io/telemetry_v1.json
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata:
+  name: egolia-ingress
+spec:
+  targetRef:
+    kind: Gateway
+    group: gateway.networking.k8s.io
+    name: default
+  accessLogging:
+    - providers:
+        - name: otel-trace
+        - name: otel-log
+      filter:
+        expression: request.host.contains('egolia') || response.code >= 400

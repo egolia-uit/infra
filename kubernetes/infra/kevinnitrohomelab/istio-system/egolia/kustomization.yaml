@@ -6,3 +6,4 @@ resources:
   - ./ingress.authorizationpolicy.yaml
   - ./roles.envoyfilter.yaml
   - ./waypoint.gateway.yaml
+  - ./ingress.telemetry.yaml
