@@ -61,6 +61,7 @@ spec:
               - http://localhost:9080
               - http://api.egolia.localhost
               - http://egolia-web.${PUBLIC_DOMAIN}
+              - https://egolia-web.${PUBLIC_DOMAIN}
             allowMethods:
               - '*'
             allowHeaders:
