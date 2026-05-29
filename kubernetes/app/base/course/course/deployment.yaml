@@ -23,6 +23,9 @@ spec:
               containerPort: 81
 
           env:
+            - name: TZ
+              value: Asia/Ho_Chi_Minh
+
             - name: EGOLIA_COURSE_SERVER_HTTP_PORT
               value: '80'
             - name: EGOLIA_COURSE_SERVER_GRPC_PORT

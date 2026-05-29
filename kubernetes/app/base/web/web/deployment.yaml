@@ -14,6 +14,9 @@ spec:
           image: ghcr.io/egolia-uit/web:latest
 
           env:
+            - name: TZ
+              value: Asia/Ho_Chi_Minh
+
             - name: OTEL_SERVICE_NAME
               value: web
 
