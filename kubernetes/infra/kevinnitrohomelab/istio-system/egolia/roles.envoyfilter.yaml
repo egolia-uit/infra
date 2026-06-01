@@ -34,19 +34,21 @@ spec:
                 end
 
                 local meta = request_handle:streamInfo():dynamicMetadata()
-                local jwt_payload = meta:get("envoy.filters.http.jwt_authn")
+                local jwt_meta = meta:get("envoy.filters.http.jwt_authn")
 
-                if jwt_payload then
-                  if jwt_payload["roles"] and type(jwt_payload["roles"]) == "table" then
-                    local roles = jwt_payload["roles"]
-                    local json_parts = {}
+                if jwt_meta then
+                  for _, jwt_payload in pairs(jwt_meta) do
+                    if type(jwt_payload) == "table" and jwt_payload["roles"] and type(jwt_payload["roles"]) == "table" then
+                      local roles = jwt_payload["roles"]
+                      local json_parts = {}
 
-                    for i, role in ipairs(roles) do
-                      table.insert(json_parts, '"' .. role .. '"')
+                      for _, role in ipairs(roles) do
+                        table.insert(json_parts, '"' .. role .. '"')
+                      end
+
+                      request_handle:headers():replace("X-Forwarded-Roles", "[" .. table.concat(json_parts, ",") .. "]")
+                      break
                     end
-
-                    local json_array = "[" .. table.concat(json_parts, ",") .. "]"
-                    request_handle:headers():replace("X-Forwarded-Roles", json_array)
                   end
                 end
               end
