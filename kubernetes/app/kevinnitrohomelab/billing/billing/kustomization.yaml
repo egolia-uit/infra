@@ -30,4 +30,4 @@ patches:
             name: billing-otel-env
 images:
   - name: ghcr.io/egolia-uit/billing
-    newTag: dev-2605.30.0531
+    newTag: dev-2606.01.1556
