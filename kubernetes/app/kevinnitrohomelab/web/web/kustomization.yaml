@@ -25,4 +25,4 @@ patches:
               name: web-otel-env
 images:
   - name: ghcr.io/egolia-uit/web
-    newTag: dev-2606.01.0658
+    newTag: dev-2606.01.1137
