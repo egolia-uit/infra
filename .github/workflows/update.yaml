@@ -17,7 +17,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Create AGE key file
         run: echo "${{ secrets.AGEKEY_CONTENT_BASE64 }}" | base64 -d > secret/age.agekey
