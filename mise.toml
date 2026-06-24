@@ -9,7 +9,7 @@ sops = { age_key_file = "./secret/age.agekey" }
 [tools]
 kubeconform = "latest"
 kubectl = "latest"
-node = "24.15.0"
+node = "24.18.0"
 "npm:renovate" = "43.141.5"
 sops = "latest"
 
